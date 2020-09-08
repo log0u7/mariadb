@@ -25,7 +25,7 @@ ifneq ($(STABILITY_TAG),)
     endif
 endif
 
-REPO = wodby/mariadb
+REPO = log0u7/mariadb
 NAME = mariadb-$(MARIADB_VER_MINOR)
 
 .PHONY: build test push shell run start stop logs clean release

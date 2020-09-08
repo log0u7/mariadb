@@ -1,9 +1,9 @@
 # MariaDB Docker Container Image
 
-[![Build Status](https://circleci.com/gh/wodby/mariadb/tree/master.svg?style=shield&circle-token=cc886e09fd6fd0458c7d0e4563ab90d072ccd0bc)](https://circleci.com/gh/wodby/mariadb)
-[![Docker Pulls](https://img.shields.io/docker/pulls/wodby/mariadb.svg)](https://hub.docker.com/r/wodby/mariadb)
-[![Docker Stars](https://img.shields.io/docker/stars/wodby/mariadb.svg)](https://hub.docker.com/r/wodby/mariadb)
-[![Docker Layers](https://images.microbadger.com/badges/image/wodby/mariadb.svg)](https://microbadger.com/images/wodby/mariadb)
+[![Build Status](https://circleci.com/gh/log0u7/mariadb/tree/master.svg?style=shield&circle-token=cc886e09fd6fd0458c7d0e4563ab90d072ccd0bc)](https://circleci.com/gh/log0u7/mariadb)
+[![Docker Pulls](https://img.shields.io/docker/pulls/log0u7/mariadb.svg)](https://hub.docker.com/r/log0u7/mariadb)
+[![Docker Stars](https://img.shields.io/docker/stars/log0u7/mariadb.svg)](https://hub.docker.com/r/log0u7/mariadb)
+[![Docker Layers](https://images.microbadger.com/badges/image/log0u7/mariadb.svg)](https://microbadger.com/images/log0u7/mariadb)
 
 ##❗Known issue with bind mounts on macOS and Windows
 
@@ -16,21 +16,21 @@ Solutions:
 
 ## Docker Images
 
-❗For better reliability we release images with stability tags (`wodby/mariadb:10.4-X.X.X`) which correspond to [git tags](https://github.com/wodby/mariadb/releases). We strongly recommend using images only with stability tags.
+❗For better reliability we release images with stability tags (`log0u7/mariadb:10.4-X.X.X`) which correspond to [git tags](https://github.com/log0u7/mariadb/releases). We strongly recommend using images only with stability tags.
 
 Overview:
 
 * All images based on Alpine Linux
-* Base image: [wodby/alpine](https://github.com/wodby/alpine)
-* [CircleCI builds](https://circleci.com/gh/wodby/mariadb)
-* [Docker Hub](https://hub.docker.com/r/wodby/mariadb)
+* Base image: [log0u7/alpine](https://github.com/log0u7/alpine)
+* [CircleCI builds](https://circleci.com/gh/log0u7/mariadb)
+* [Docker Hub](https://hub.docker.com/r/log0u7/mariadb)
 
 Supported tags and respective `Dockerfile` links:
 
-* `10.5`, `10`, `latest` [_(Dockerfile)_](https://github.com/wodby/mariadb/tree/master/10/Dockerfile)
-* `10.4` [_(Dockerfile)_](https://github.com/wodby/mariadb/tree/master/10/Dockerfile)
-* `10.3` [_(Dockerfile)_](https://github.com/wodby/mariadb/tree/master/10/Dockerfile)
-* `10.2` [_(Dockerfile)_](https://github.com/wodby/mariadb/tree/master/10/Dockerfile)
+* `10.5`, `10`, `latest` [_(Dockerfile)_](https://github.com/log0u7/mariadb/tree/master/10/Dockerfile)
+* `10.4` [_(Dockerfile)_](https://github.com/log0u7/mariadb/tree/master/10/Dockerfile)
+* `10.3` [_(Dockerfile)_](https://github.com/log0u7/mariadb/tree/master/10/Dockerfile)
+* `10.2` [_(Dockerfile)_](https://github.com/log0u7/mariadb/tree/master/10/Dockerfile)
 
 Credits to Alpine Linux team for patches for better musl compatibility of MariaDB. Patches taken from Alpine's [packages repository](https://pkgs.alpinelinux.org/packages).
 
@@ -221,16 +221,16 @@ You ***must*** set the `WSREP_ON` environment variable if you want the container
 When starting a new cluster, the first node must bootstrap the cluster:
 ```
 $ docker run -e WSREP_ON=ON -v data1:/var/lib/mysql --name galera-1 \
-    wodby/mariadb:galera --wsrep-new-cluster
+    log0u7/mariadb:galera --wsrep-new-cluster
 ```
 When the first node is ready, the other nodes can join it (via its hostname or IP) and participate in the cluster:
 ```
 $ docker run -e WSREP_ON=ON -v data2:/var/lib/mysql --name galera-2 \
-    wodby/mariadb:galera --wsrep-cluster-address="gcomm://<node-1>"
+    log0u7/mariadb:galera --wsrep-cluster-address="gcomm://<node-1>"
 ```
 ```
 $ docker run -e WSREP_ON=ON -v data3:/var/lib/mysql --name galera-3 \
-    wodby/mariadb:galera --wsrep-cluster-address="gcomm://<node-1>,<node-2>"
+    log0u7/mariadb:galera --wsrep-cluster-address="gcomm://<node-1>,<node-2>"
 ```
 
 After the other nodes have joined the first, you should terminate the first container and `docker run` a new container without the `--wsrep-new-cluster` and join the other nodes.
@@ -249,7 +249,7 @@ In general, it's a good idea to use `garbd` for clusters with even numbers of no
 
 The `galera`-tagged images also include `garbd`, which can be run instead of mariadb.
 ```
-$ docker run wodby/mariadb:galera garbd --help
+$ docker run log0u7/mariadb:galera garbd --help
 Usage: garbd [options] [group address]
 [...]
 ```
@@ -284,7 +284,7 @@ default params values:
 
 ## Deployment
 
-Deploy MariaDB to your own server via [![Wodby](https://www.google.com/s2/favicons?domain=wodby.com) Wodby](https://wodby.com/stacks/mariadb).
+Deploy MariaDB to your own server via [![log0u7](https://www.google.com/s2/favicons?domain=log0u7.com) log0u7](https://log0u7.com/stacks/mariadb).
 
 
 [`MARIADB_PLUGIN_LOAD`]: https://mariadb.com/kb/en/library/plugin-overview/#installing-a-plugin-with-plugin-load
